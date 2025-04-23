@@ -36,5 +36,5 @@ ENV HOSTNAME=0.0.0.0
 # Expose port 3000
 EXPOSE 3000
 
-# Start the development server
-CMD ["npm", "run", "dev"] 
+# Start the development server with explicit host and port
+CMD ["npm", "run", "dev", "--", "-p", "3000", "-H", "0.0.0.0"] 
