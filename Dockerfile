@@ -1,6 +1,9 @@
 # Use Node.js 18 as the base image
 FROM node:18-alpine
 
+# Install Python and build dependencies
+RUN apk add --no-cache python3 make g++ gcc
+
 # Set working directory
 WORKDIR /app
 
