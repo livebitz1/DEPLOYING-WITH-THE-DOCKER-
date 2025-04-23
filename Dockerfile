@@ -15,17 +15,14 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# First, copy only package files to leverage Docker cache
-COPY package*.json .npmrc ./
+# Copy package files and fix-deps.js
+COPY package*.json .npmrc fix-deps.js ./
 
 # Install dependencies with proper flags and caching
 RUN npm config set legacy-peer-deps true \
+    && node fix-deps.js \
     && npm ci \
     && npm cache clean --force
-
-# Copy fix-deps.js and run it
-COPY fix-deps.js ./
-RUN node fix-deps.js
 
 # Copy the rest of the application
 COPY . .
