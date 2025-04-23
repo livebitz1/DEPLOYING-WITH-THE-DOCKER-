@@ -2,10 +2,14 @@
 FROM node:20-alpine
 
 # Install Python, build dependencies, and Linux kernel headers
-RUN apk add --no-cache python3 make g++ gcc linux-headers \
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    gcc \
+    linux-headers \
+    eudev \
     eudev-dev \
-    libudev-zero-dev \
-    udev-dev \
     libc6-compat
 
 # Set working directory
