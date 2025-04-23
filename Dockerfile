@@ -33,21 +33,8 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-# Set Node options for build and runtime
-ENV NODE_OPTIONS="--max-old-space-size=4096"
-
-# Build the application
-RUN npm run build
-
-# Remove development dependencies
-RUN npm prune --production
-
 # Expose port 3000
 EXPOSE 3000
-
-# Add healthcheck
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:3000/api/health || exit 1
 
 # Start the development server
 CMD ["npm", "run", "dev"] 
