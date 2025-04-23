@@ -28,13 +28,16 @@ RUN npm config set legacy-peer-deps true \
 COPY . .
 
 # Set environment variables
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=10000
 ENV HOSTNAME=0.0.0.0
 
+# Build the application
+RUN npm run build
+
 # Expose port 10000
 EXPOSE 10000
 
-# Start the development server
-CMD ["npm", "run", "dev"] 
+# Start the production server
+CMD ["npm", "run", "start"] 
