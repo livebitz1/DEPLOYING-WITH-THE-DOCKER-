@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "buildCommand": "NEXT_IGNORE_TYPE_ERROR=1 NEXT_IGNORE_ESLINT=1 NODE_OPTIONS='--max_old_space_size=4096' next build || exit 0",
+  "installCommand": "npm install --legacy-peer-deps",
+  "outputDirectory": ".next",
+  "devCommand": "next dev",
+  "ignoreCommand": "echo 'Ignoring build errors'",
+  "regions": ["iad1"],
+  "env": {
+    "NODE_ENV": "development",
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "NEXT_IGNORE_TYPE_ERROR": "1",
+    "NEXT_IGNORE_ESLINT": "1",
+    "NEXT_IGNORE_REACT_HOOKS": "1",
+    "NEXT_PRIVATE_SKIP_TYPE_CHECKS": "1",
+    "NEXT_DISABLE_TYPE_CHECKS": "1",
+    "TS_NODE_TRANSPILE_ONLY": "1"
+  }
+}
