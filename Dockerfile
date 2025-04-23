@@ -1,8 +1,8 @@
-# Use Node.js 18 as the base image
-FROM node:18-alpine
+# Use Node.js 20 as the base image
+FROM node:20-alpine
 
-# Install Python and build dependencies
-RUN apk add --no-cache python3 make g++ gcc
+# Install Python, build dependencies, and Linux kernel headers
+RUN apk add --no-cache python3 make g++ gcc linux-headers
 
 # Set working directory
 WORKDIR /app
