@@ -1,16 +1,15 @@
-# Use Node.js 20 as the base image
-FROM node:20-alpine
+# Use Node.js 20 with Ubuntu as base
+FROM node:20
 
-# Install Python, build dependencies, and Linux kernel headers
-RUN apk add --no-cache \
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
     python3 \
     make \
     g++ \
     gcc \
-    linux-headers \
-    eudev \
-    eudev-dev \
-    libc6-compat
+    libudev-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
