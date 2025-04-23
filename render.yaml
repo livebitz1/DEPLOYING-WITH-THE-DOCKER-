@@ -3,6 +3,7 @@ services:
     name: ai-wallet
     env: docker
     dockerfilePath: ./Dockerfile
+    plan: starter # Minimum plan for production workloads
     envVars:
       - key: NODE_ENV
         value: production
@@ -12,5 +13,36 @@ services:
         value: "3000"
       - key: HOSTNAME
         value: "0.0.0.0"
-    healthCheckPath: /
-    autoDeploy: true 
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: TWITTER_BEARER_TOKEN
+        sync: false
+      - key: TWITTER_API_KEY
+        sync: false
+      - key: TWITTER_API_SECRET
+        sync: false
+      - key: TWITTER_ACCESS_TOKEN
+        sync: false
+      - key: TWITTER_ACCESS_TOKEN_SECRET
+        sync: false
+      - key: COINMARKETCAP_API_KEY
+        sync: false
+      - key: NEXT_PUBLIC_SOLANA_RPC_URL
+        sync: false
+    healthCheckPath: /api/health
+    healthCheckTimeout: 100
+    autoDeploy: true
+    numInstances: 1
+    buildCommand: npm run build
+    startCommand: npm run start
+    regions:
+      - oregon
+    disk:
+      name: tmp
+      mountPath: /tmp
+      sizeGB: 1
+    scaling:
+      minInstances: 1
+      maxInstances: 1
+      targetMemoryPercent: 80
+      targetCPUPercent: 80 
