@@ -30,11 +30,11 @@ COPY . .
 # Set environment variables
 ENV NODE_ENV=development
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV PORT=3000
+ENV PORT=10000
 ENV HOSTNAME=0.0.0.0
 
-# Expose port 3000
-EXPOSE 3000
+# Expose port 10000
+EXPOSE 10000
 
-# Start the development server with explicit host and port
-CMD ["npm", "run", "dev", "--", "-p", "3000", "-H", "0.0.0.0"] 
+# Start the development server
+CMD ["npm", "run", "dev"] 
