@@ -28,7 +28,7 @@ RUN npm config set legacy-peer-deps true \
 COPY . .
 
 # Set environment variables
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
@@ -49,5 +49,5 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:3000/api/health || exit 1
 
-# Start the production server with increased memory limit
-CMD ["npm", "run", "start"] 
+# Start the development server
+CMD ["npm", "run", "dev"] 
