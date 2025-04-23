@@ -36,8 +36,15 @@ ENV HOSTNAME=0.0.0.0
 # Build the application
 RUN npm run build
 
+# Remove development dependencies
+RUN npm prune --production
+
 # Expose port 10000
 EXPOSE 10000
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:10000/api/health || exit 1
 
 # Start the production server
 CMD ["npm", "run", "start"] 
