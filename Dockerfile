@@ -14,6 +14,9 @@ RUN npm install --legacy-peer-deps
 # Copy the rest of the application
 COPY . .
 
+# Build the application
+RUN npm run build
+
 # Set environment variables
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -24,4 +27,4 @@ ENV HOSTNAME=0.0.0.0
 EXPOSE 3000
 
 # Start the production server
-CMD ["npm", "run", "start", "--", "-H", "0.0.0.0"] 
+CMD ["npm", "run", "start"] 
